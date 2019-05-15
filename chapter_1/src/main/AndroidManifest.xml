@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.ryg.chapter_1"
+          android:versionCode="1"
+          android:versionName="1.0"
+	android:sharedUserId="com.keepon">
+
+	<uses-sdk
+		android:minSdkVersion="8"
+		android:targetSdkVersion="18"/>
+
+	<uses-permission android:name="com.ryg.PROVIDER"/>
+	<uses-permission android:name="com.ryg.chapter_2.permission.ACCESS_BOOK_SERVICE"/>
+	<!-- <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" /> -->
+
+	<application
+		android:allowBackup="true"
+		android:icon="@drawable/ic_launcher"
+		android:label="@string/app_name"
+		android:theme="@style/AppTheme">
+		<!--android:launchMode="singleTop"-->
+		<!--android:clearTaskOnLaunch="true"如果将最底层的那个Activity的这个属性设置为true，那么只要用户离开了当前任务，再次返回的时候就会将最底层Activity之上的所有其它Activity全部清除掉,作用于整个app，具体看郭霖文章-->
+		<activity
+
+			android:name="com.ryg.chapter_1.MainActivity"
+			android:configChanges="orientation|screenSize"
+			android:label="@string/app_name"
+			>
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name="com.ryg.chapter_1.SecondActivity"
+			android:configChanges="screenLayout"
+			android:label="@string/app_name"
+
+			/>
+		<activity
+			android:name="com.ryg.chapter_1.ThirdActivity"
+			android:configChanges="screenLayout"
+			android:label="@string/app_name"
+			android:launchMode="singleTask"
+			android:taskAffinity="com.keepon"
+			>
+			<intent-filter>
+				<action android:name="com.ryg.chapter_1.FourthActivity.start"/>
+				<category android:name="com.zhang.hhhh.mmm"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:mimeType="image/*"></data>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name="com.ryg.chapter_1.FourthActivity"
+			android:launchMode="singleTask"
+			android:taskAffinity="com.keepon"
+			>
+			<intent-filter>
+				<action android:name="com.ryg.chapter_1.FourthActivity.start"/>
+				<category android:name="com.zhang.hhhh.mmm"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:mimeType="image/*"></data>
+			</intent-filter>
+			<intent-filter>
+				<action android:name="com.ryg.chapter_1.FourthActivity.start"/>
+				<category android:name="com.zhang.hhhh.mmm"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name="FifthActivity"
+			android:launchMode="singleInstance"></activity>
+		<activity android:name="SixthActivity"></activity>
+	</application>
+
+</manifest>

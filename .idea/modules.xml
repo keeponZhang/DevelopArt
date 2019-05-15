@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DevelopArt.iml" filepath="$PROJECT_DIR$/DevelopArt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/alipaydemo/alipaydemo.iml" filepath="$PROJECT_DIR$/alipaydemo/alipaydemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter_1/chapter_1.iml" filepath="$PROJECT_DIR$/chapter_1/chapter_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter_2/chapter_2.iml" filepath="$PROJECT_DIR$/chapter_2/chapter_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter_3/chapter_3.iml" filepath="$PROJECT_DIR$/chapter_3/chapter_3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter_4/chapter_4.iml" filepath="$PROJECT_DIR$/chapter_4/chapter_4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gsondemo/gsondemo.iml" filepath="$PROJECT_DIR$/gsondemo/gsondemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/keeppush/keeppush.iml" filepath="$PROJECT_DIR$/keeppush/keeppush.iml" />
+      <module fileurl="file://$PROJECT_DIR$/okhttpdemo/okhttpdemo.iml" filepath="$PROJECT_DIR$/okhttpdemo/okhttpdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/proxytest/proxytest.iml" filepath="$PROJECT_DIR$/proxytest/proxytest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swithdeom/swithdeom.iml" filepath="$PROJECT_DIR$/swithdeom/swithdeom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swithdeom/swithdeom.iml" filepath="$PROJECT_DIR$/swithdeom/swithdeom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/threaddemo/threaddemo.iml" filepath="$PROJECT_DIR$/threaddemo/threaddemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/threaddemo/threaddemo.iml" filepath="$PROJECT_DIR$/threaddemo/threaddemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unionpay/unionpay.iml" filepath="$PROJECT_DIR$/unionpay/unionpay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechatpay/wechatpay.iml" filepath="$PROJECT_DIR$/wechatpay/wechatpay.iml" />
+    </modules>
+  </component>
+</project>

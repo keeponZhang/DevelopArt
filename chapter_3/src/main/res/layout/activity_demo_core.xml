@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.example.ceshiactivity.viewdemo.DemoCoreActivity">
+
+	<com.ryg.chapter_3.StickyLayout
+		android:id="@+id/sticky_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#ffffff"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:id="@+id/sticky_header"
+			android:layout_width="match_parent"
+			android:layout_height="100dp"
+			android:background="#78A524"
+			android:gravity="center"
+			android:orientation="vertical">
+
+			<ImageView
+				android:id="@+id/imageView1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_launcher" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/sticky_content"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<ListView
+				android:id="@+id/list"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="#fff4f7f9"
+				android:cacheColorHint="#00000000"
+				android:divider="#dddbdb"
+				android:dividerHeight="1.0px"
+				android:listSelector="@android:color/transparent" />
+		</LinearLayout>
+	</com.ryg.chapter_3.StickyLayout>
+</RelativeLayout>

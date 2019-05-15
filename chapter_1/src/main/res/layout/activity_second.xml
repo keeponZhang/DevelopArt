@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SecondActivity " />
+	
+    <Button
+         android:onClick="gotoC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoC" />
+    <Button
+        android:onClick="gotoD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoD" />
+    <Button
+        android:onClick="gotoSix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoSix" />
+</LinearLayout>

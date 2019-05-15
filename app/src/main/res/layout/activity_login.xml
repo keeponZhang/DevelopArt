@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+	<Button
+		android:id="@+id/btnLogin"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="登录"/>
+
+	<Button
+		android:id="@+id/btnPublishTweet"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="发表动弹"/>
+
+	<Button
+		android:id="@+id/btnUpdateNote"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="便签同步"/>
+
+	<Button
+		android:id="@+id/btnLoginByQQ"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="qq登录"/>
+
+	<Button
+		android:id="@+id/btnLoginBySina"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="微博登录"/>
+</LinearLayout>

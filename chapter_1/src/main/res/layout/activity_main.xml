@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+   
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MainActivity "
+          />
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoB"
+        android:onClick="gotoB" />
+    <Button
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoDyinshi"
+        android:onClick="gotoDyinshi" />
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoChapter2Four"
+        android:onClick="gotoChapter2Four" />
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoChapter2Main"
+        android:onClick="gotoChapter2Main" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoFifth"
+        android:onClick="gotoFifth" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="updataInZiThread"
+        android:onClick="updataInZiThread" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="shareUidTest"
+        android:onClick="shareUidTest" />
+</LinearLayout>

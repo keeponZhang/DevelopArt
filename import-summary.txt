@@ -27,23 +27,17 @@ Moved Files:
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => chapter_1\src\main\AndroidManifest.xml
-* res\ => chapter_1\src\main\res\
-* src\ => chapter_1\src\main\java\
-
-Missing Android Support Repository:
------------------------------------
-Some useful libraries, such as the Android Support Library, are
-installed from a special Maven repository, which should be installed
-via the SDK manager.
-
-It looks like this library is missing from your SDK installation at:
-null
-
-To install it, open the SDK manager, and in the Extras category,
-select "Android Support Repository". You may also want to install the
-"Google Repository" if you want to use libraries like Google Play
-Services.
+* AndroidManifest.xml => unionPayGuanFangDemo\src\main\AndroidManifest.xml
+* assets\ => unionPayGuanFangDemo\src\main\assets\
+* libs\arm64-v8a\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\arm64-v8a\libentryexstd.so
+* libs\armeabi-v7a\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\armeabi-v7a\libentryexstd.so
+* libs\armeabi\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\armeabi\libentryexstd.so
+* libs\mips\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\mips\libentryexstd.so
+* libs\UPPayAssistEx.jar => unionPayGuanFangDemo\libs\UPPayAssistEx.jar
+* libs\UPPayPluginExStd.jar => unionPayGuanFangDemo\libs\UPPayPluginExStd.jar
+* libs\x86\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\x86\libentryexstd.so
+* res\ => unionPayGuanFangDemo\src\main\res\
+* src\ => unionPayGuanFangDemo\src\main\java\
 
 Next Steps:
 -----------

@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/btnPay"
+        android:layout_width="match_parent"
+        android:drawableLeft="@drawable/union_pay_icon"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="银联支付" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>

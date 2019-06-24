@@ -60,12 +60,12 @@ git commit -m "modify a"
 
 暂存区里面还有个对象库
 
-git rm a
+git rm a （没被追踪的文件要用rm 命令删除）
 //把工作区和暂存区的a删除(工作区的文件和暂存区（git的工作区）的索引都删掉了)
 git status 
 git reset HEAD a
 //从history恢复，还原
-git rm --cached a
+git rm --cached a (取消暂存)
 //暂存区的a删除（暂存区(git工作区)的索引删掉），工作目录不删除
 
 git satus 
@@ -333,6 +333,13 @@ git clean -n
 git clean -f 
 //强制清除
 
+//在test.o中新加一行 first line.
+git add .
+git commit -m "SecondCommit"
+git revert HEAD
+//可以修改提交信息获取按WQ退出，发现first line被删除掉了。
+
+
 git revert 
 //做某次提交的相反操作
 
@@ -346,16 +353,44 @@ git reset
 git reflog
 //维护了一个HEAD的历史信息，通常配合git reset一起使用
 
-git checkout HEAD~ -- .gitignore
-//此时工作区和暂存区就有了.gitgnore文件
-touch test.o
-//重新创建一个test.o文件
+//如果想撤销revert，由不想有一个新的提交记录，可以用git commit --amend
+//因为git revert 改变的是test.o文件，删除了第一行，首先我们使用git checkout HEAD~ -- 还原具体的文件
+git checkout HEAD~ -- test.o
+//此时工作区和暂存区就有了test.o文件
+//接着在test.o文件下一行添加一行文字，test amend.
 git add test.o
 //重新加入暂存区
 git commit --amend
-//修改提交信息
+//修改提交信息,改为test amend. 现在只有三个提交记录，firstcommit,secondcommit,test amend.
 
 
+git rebase
+//首先在test.o文件中加一行 This is a confilct rebase;
+git add .
+git commit -m "this is conflict rebase commit"
+
+
+git checkout -b test_rebase HEAD~
+//检出之前的一个提交作为分支test_rebase(此时test.o文件只有两行文字)
+//接着修改test.o文件，this is first commmit on test_rebase.
+git add .
+git commit -m "this is firstcommit on test_rebase"
+
+
+git rebase master
+//会提示冲突，可以使用 git rebase --abort 放弃
+git rebase --abort
+//放弃rebase
+git rebase master
+//重新发起rebase ,手动修改冲突，改完之后，不是用commit命令，而是用git rebase --continue
+git rebase --continue
+//提示test.o: needs merge
+// You must edit all merge conflicts and then
+// mark them as resolved using git add
+git add test.o
+//将test.o加入到暂存区
+git rebase --continue
+//提示Applying: this is firstcommit on test_rebase
 
 
 

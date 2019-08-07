@@ -14,3 +14,4 @@ chapter_2/build/
 chapter_1/build/
 chapter_2/.idea/
 .idea/
+.gitignore

@@ -1,12 +1,20 @@
 
 Git 简介
+vim命令:　
+:w 保存当前编辑文件，但并不退出
+:q 退出不保存
+:wq 保存退出
+
+// 当前仓库
 git config --local
+//当前登录用户，c/users/当前用户名/.gitconfig
+git config --global
+//全局 C:\Program Files\Git\mingw64\etc gitconfig
 git config --system
 
 
 git config --global user.name keeponzhang
 git config --global email 462789909@qq.com
-
 git config help
 git help config 
 man git-config
@@ -65,7 +73,7 @@ git rm a （没被追踪的文件要用rm 命令删除）
 git status 
 git reset HEAD a
 //从history恢复，还原
-git rm --cached a (取消暂存)
+git rm --cached a (取消暂存,add 的相反操作（已经commit 了也可用）)
 //暂存区的a删除（暂存区(git工作区)的索引删掉），工作目录不删除
 
 git satus 
@@ -73,16 +81,15 @@ git add a
 
 git mv a c
 //把a命名为c
-git mv c a
+//先cmd命令rename,再 git add
+//（工作区的文件被重命名了，git的工作区删除了a的索引，新加了c的索引（此时因为对象内容不变，暂存区中的对象库并没有改变你，但是会生成新的tree对象））
 
 mv a c
 cmd命令把a命名为c
 git status
 git add a c
 
-git mv a c
-//先cmd命令rename,再 git add
-（工作区的文件被重命名了，git的工作区删除了a的索引，新加了c的索引（此时因为对象内容不变，暂存区中的对象库并没有改变你，但是会生成新的tree对象））
+
 
 git add --A
 //把整个工作区添加到暂存区
@@ -147,7 +154,7 @@ vim master.txt
 修改master.txt:stash1
 git add .
 git checkout master
-(没add的话好像也会提示)
+(没add的话好像也会提示)(两者有冲突的话，新加的话好像不会)
 提示please commit your changes or stash them before you switch branches.(因为当前工作区的修改被添加到了暂存区；checkout 的时候会把本地的修改覆盖掉)
 
 git stash save -a "stash 1"

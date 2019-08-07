@@ -166,7 +166,7 @@ git checkout master
 git checkout fix_v0
 git stash list 
 git stash pop --index stash@{0}
-{--index 把暂存区也还原回去}
+{--index 把暂存区也还原回去(因为已经暂存的也可以stash)}
 //提示 changes to be committed（stash成功)
 
 vim master.txt(之前添加的stash1也在)
@@ -202,7 +202,8 @@ git lol
 
 git checkout master
 git merge test_merge
-//提示是 fast-forward,表示test_merge都是在master分支的当前指向的commit上产生的衍生提交，不会再产生一个commit，只需要把工作区和暂存区恢复到test_merge一样的状态，然后把master指向test_merge指向的那个commit（Initial commit on test_merge）
+//提示是 fast-forward,表示test_merge都是在master分支的当前指向的commit上产生的衍生提交，不会再产生一个commit，
+//只需要把工作区和暂存区恢复到test_merge一样的状态，然后把master指向test_merge指向的那个commit（Initial commit on test_merge）
 
 git lol
 git merge test
@@ -252,7 +253,9 @@ git show(index 后面的第一个键值对的值)
 InitCommit on Master
 SecondCommit on Master
 Inital commit on test
-
+//删除分支
+ git branch -d
+ git branch -D
 git log 
 git log -p
 git log --stat 
@@ -260,11 +263,11 @@ git log --stat
 git log --oneline
 
 git diff
-//工作区与暂存区的差异
+//工作区与暂存区的差异 (一个文件修改后，如果没有暂存，git diff会提示不同；如果暂存了，此时工作区与暂存区一致，git diff不会提示)
 git diff HEAD
-//工作区与历史提交的差异
-git diff --cache
-暂存区与历史提交的差异
+//工作区与历史提交的差异(一个文件修改后，如果没有暂存，git diff会提示不同；如果暂存了，此时工作区与暂存区一致，因为是比较工作区与历史提交，所以git diff也会提示)
+git diff --cached
+//暂存区与历史提交的差异 (一个文件修改后，如果没有暂存，git diff不会提示不同；如果暂存了，暂存区有东西，因为是比较工作区与历史提交，所以git diff会提示)
 
 git diff HEAD HEAD~2
 //两个commit的差异

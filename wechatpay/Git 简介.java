@@ -51,6 +51,16 @@ git rm
 git mv
 gitignore
 
+
+当执行 git status 的时候，返回结果大致可分为3个部分：
+
+拟提交的变更：这是已经放入暂存区，准备使用 git commit 命令提交的变更
+未暂存的变更：这是工作目录和暂存区快照之间存在差异的文件列表
+未跟踪的文件：这类文件对于 Git 系统来说是未知的，也是可以被忽略的
+如果在 git status 命令后面加上 --ignored选项，还会列出被忽略的文件。 
+
+还有一种简洁的输出格式，即添加 --short 选项，例如
+
 git init git_basics
 touch a 
 touch b
@@ -336,14 +346,15 @@ git reset master.txt
 (等同于 git reset HEAD master.txt，等同于git reset --mixed HEAD master.txt）
 
 git reset --soft HEAD （不能带文件名）重置提交记录为，用HEAD无效果，因为带 --soft只移动 HEAD 指针，工作区和暂存区的内容不变；git reset --soft HEAD~ 相当于把HEAD指针移动上次提交，此时可以再次提交或者更改描述再提交）
-git reset --mixed HEAD master.txt，重置提交记录为HEAD，（–mixed还会用HEAD 指向的当前快照的内容来更新索引（暂存区与当前历史提交一致），工作区内容不变。
-git reset --hard HEAD master.txt，重置提交记录为HEAD，（–mixed还会用HEAD 指向的当前快照的内容来更新索引（暂存区)和工作区）(谨慎使用，工作区的内容会丢掉)。
+git reset --mixed HEAD ，重置提交记录为HEAD，（–mixed还会用HEAD 指向的当前快照的内容来更新索引（暂存区与当前历史提交一致），工作区内容不变。
+git reset --hard HEAD ，（不能带文件名）重置提交记录为HEAD，（–mixed还会用HEAD 指向的当前快照的内容来更新索引（暂存区)和工作区）(谨慎使用，工作区的内容会丢掉)。
 
+(git reset  HEAD master.txt 带文件名不会一定HEAD指针)
 --soft 表示当前HEAD提交与暂存区和工作区不一定一致（所以重置HEAD指针之前的修改都还会保留在暂存区和工作区）
 --mixed 表示当前HEAD提交与暂存区一致（所以重置HEAD指针之前的修改都还会保留在工作区）
 --hard 表示当前HEAD提交与暂存区和工作区一致（所以重置HEAD指针之前的修改都没了）
 
-
+git reset --soft HEAD~2可以实现压缩提交，把两次提交压缩成一次
 
 
 git diff --cached
@@ -365,12 +376,30 @@ develop的HEAD节点会移到master指向的最后一次commit中。
 
 
 
-带file:(reset的commit省的话用HEAD,checkout的commit不能省)
+带file:(reset，的commit省的话用HEAD,checkout省的话表示用当前的暂存区)
 git reset (commit) [file] 和git checkout (commit) [file] 都不会移动HEAD
  区别:git reset (commit) [file] 等同于git reset --mixted(commit) [file],有使用指定commit的file覆盖暂存区的效果，而
 git checkout (commit) [file]等同于git reset --hard(commit) [file] ，不仅用某次提交中的那个文件来更新索引，同时也会覆盖工作目录中对应的文件 —— 这样对工作目录并不安全！
-注意：一旦暂存了，想恢复到工作区，只能用 git reset HEAD <file>(此时使用上一次提交的历史记录还原暂存区，工作区不变，因为暂存区是上次提交的状态，所以此时工作区的状态是，有修改，未暂存)，不想恢复到工作区，直接还原到上次暂存区状态，用git checkout HEAD <file>(等同git reset --hard(commit) [file] )；没暂存，可以用git checkout -- <file>清除工作区的修改
+注意：一旦暂存了，想恢复到工作区，只能用 git reset HEAD <file>(此时使用上一次提交的历史记录还原暂存区，工作区不变，因为暂存区是上次提交的状态，所以此时工作区的状态是，有修改，未暂存)，
+不想恢复到工作区，直接还原到上次暂存区状态，用git checkout HEAD <file>(等同git reset --hard(commit) [file] )；没暂存，可以用git checkout -- <file>清除工作区的修改
 https://blog.csdn.net/longintchar/article/details/82314102
+
+
+
+git checkout 命令详解
+git checkout [<commit>] [--] <paths>  用于拿暂存区的文件覆盖工作区的文件，或者用指定提交中的文件覆盖暂存区和工作区中对应的文件。
+注意: 如果path还没暂存,git checkout test.txt 等于git checkout HEAD test.txt；如果path暂存了，git checkout test.txt 不等于等于git checkout HEAD test.txt，git checkout test.txt 默认拿暂存区覆盖工作区
+git checkout <branch> 用于切换分支。
+git checkout -b <new_branch> [<start_point>] 用于创建并切换分支
+
+
+工作目录下面的所有文件都不外乎这两种状态：已知（已跟踪）的和未知的。已跟踪的文件是指已经被纳入版本控制的文件，
+未知的文件又分为两种：未跟踪和和已忽略（这个以后再说）。
+已跟踪的文件可分为以下几种状态：已提交（或未修改）；已修改；已暂存
+
+
+
+
 
 git show INITIAL_COMMIT
 git checkout INITIAL_COMMIT -- master.txt

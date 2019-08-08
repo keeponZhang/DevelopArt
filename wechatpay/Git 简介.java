@@ -291,8 +291,61 @@ vim master.txt
 git add master.txt
 git status
 
+一：文件从暂存区回退到工作区，撤销add
+
+　　如果想取消某个add的文件，可以使用该命令来进行撤销操作
+
+　　撤消add：git reset 文件名
+
+　　撤消所有add的文件：git reset HEAD .
+
+　　撤消某个文件或文件夹：git reset HEAD 文件（夹）名
+
+　　把从cache中删除的文件，重新添加到cache中： git add -f 文件名
+
+    eg：今天add文件的时候，不小心使用了git add .  将配置文件等也给add到缓存区了，那么如何从缓存区撤销我们不想add的文件呢？ 使用命令： git  reset  fileName
+
+二：版本回退 
+
+1. git reset  --mixed commit的id  
+
+还原到commit的id，（git reset 默认是mixed ）此commit之后的文件变成modified红色（即还没add的状态）
+
+2. git reset  --soft commit的id 
+
+还原到commit的id，此commit之后的文件变成modified绿色（即add（勾选中）的状态）
+
+3. git reset --hard commit的id 
+
+还原到commit的id，此commit之后的文件都被还原
+
+
+git reset (–mixed) HEAD~1 
+回退一个版本,且会将暂存区的内容和本地已提交的内容全部恢复到未暂存的状态,不影响原来本地文件(未提交的也 
+不受影响) 
+git reset –soft HEAD~1 
+回退一个版本,不清空暂存区,将已提交的内容恢复到暂存区,不影响原来本地的文件(未提交的也不受影响) 
+git reset –hard HEAD~1 
+回退一个版本,清空暂存区,将已提交的内容的版本恢复到本地,本地的文件也将被恢复的版本替换
+
+
+
+参考三棵树：
+https://blog.csdn.net/longintchar/article/details/82314102
 git reset master.txt
-(等同于 git reset HEAD master.txt，等同于git reset --mixed HEAD master.txt，重置提交记录为HEAD，用HEAD历史记录恢复到暂存区，工作区不变；git reset --soft HEAD master.txt,重置提交记录为HEAD,暂存区，工作区不变，此时无变化；git reset --hard HEAD master.txt，重置提交记录为HEAD，把HEAD的内容恢复到暂存区，工作区)
+(等同于 git reset HEAD master.txt，等同于git reset --mixed HEAD master.txt）
+
+git reset --soft HEAD （不能带文件名）重置提交记录为，用HEAD无效果，因为带 --soft只移动 HEAD 指针，工作区和暂存区的内容不变；git reset --soft HEAD~ 相当于把HEAD指针移动上次提交，此时可以再次提交或者更改描述再提交）
+git reset --mixed HEAD master.txt，重置提交记录为HEAD，（–mixed还会用HEAD 指向的当前快照的内容来更新索引（暂存区与当前历史提交一致），工作区内容不变。
+git reset --hard HEAD master.txt，重置提交记录为HEAD，（–mixed还会用HEAD 指向的当前快照的内容来更新索引（暂存区)和工作区）(谨慎使用，工作区的内容会丢掉)。
+
+--soft 表示当前HEAD提交与暂存区和工作区不一定一致（所以重置HEAD指针之前的修改都还会保留在暂存区和工作区）
+--mixed 表示当前HEAD提交与暂存区一致（所以重置HEAD指针之前的修改都还会保留在工作区）
+--hard 表示当前HEAD提交与暂存区和工作区一致（所以重置HEAD指针之前的修改都没了）
+
+
+
+
 git diff --cached
 (比较暂存区与提交记录，此时为差异)
 git status
@@ -303,7 +356,7 @@ git checkout 和git reset:
 两点区别:
 (1)首先不同于 reset --hard，checkout 对工作目录是安全的，它会通过检查来确保不会将已更改的文件弄丢；而 reset --hard 则会不做检查就全面地替换所有东西。
 (2).第二个重要的区别是如何更新 HEAD。 reset 会移动 HEAD 分支的指向（即 HEAD 指向的分支的指向），而 checkout 只会移动 HEAD 自身来指向另一个分支。 
-https://blog.csdn.net/longintchar/article/details/82314102
+
 
 不带file:
 git reset [commit]和git checkout 都会移动HEAD

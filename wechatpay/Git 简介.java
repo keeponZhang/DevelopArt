@@ -491,10 +491,13 @@ git cherry-pick e43a6
 同 merge 操作一样，拣选操作也可能产生冲突。有人会问：不会吧，打个补丁也能冲突？当然能。
 用 diff 工具生成 patch 时，我们所做的每一处修改都会连同它的“定位信息”（原始文件中的行号、修改处前三行和后三行的原始文本）一并保存到 patch 文件中。patch 被应用时，会在目标文件中寻找“定位信息”，找到后再实施修改。可是，当我们把补丁应用到 C7 上时，有可能找不到那些定位信息了：在master分支上，C2变成了C3，在maint分支上，C2变成了C6，又变成了C7，也许C3和C7相差越来越远，C3中的上下文在C7中早已面目全非，不见踪迹。于是应用patch失败，即发生冲突。
 
-
-
-
-
+git rebase
+其实“git rebase”就是一系列的“cherry-pick”，只是这一系列的动作用一条命令（git rebase）给完成了。你完全可以通过多次手动“cherry-pick”来复制其行为（不过不太方便，更容易出现人为错误）
+在 rebase 的过程中，也许会出现冲突 (conflict)。如果遇到冲突，Git 会停止 rebase，并让你去解决冲突；在解决完冲突后，可以用"git-add"命令去标记此冲突已经解决。 然后，你无需执行 git commit,只要执行:
+git rebase --continue
+这样 git 会继续应用余下的补丁。
+如果你rebase到一半，突然后悔了，你可以用--abort参数来终止 rebase，并且"mywork" 分支会回到 rebase 开始前的状态。
+git rebase --abort
 
 
 

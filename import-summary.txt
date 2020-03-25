@@ -20,24 +20,17 @@ the .jar file in your project was of an older version than the
 dependency we picked, which could render the project not compileable.
 You can disable the jar replacement in the import wizard and try again:
 
-android-support-v4.jar => com.android.support:support-v4:18.+
+android-support-v4.jar => com.android.support:support-v4:19.1.0
 
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => unionPayGuanFangDemo\src\main\AndroidManifest.xml
-* assets\ => unionPayGuanFangDemo\src\main\assets\
-* libs\arm64-v8a\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\arm64-v8a\libentryexstd.so
-* libs\armeabi-v7a\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\armeabi-v7a\libentryexstd.so
-* libs\armeabi\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\armeabi\libentryexstd.so
-* libs\mips\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\mips\libentryexstd.so
-* libs\UPPayAssistEx.jar => unionPayGuanFangDemo\libs\UPPayAssistEx.jar
-* libs\UPPayPluginExStd.jar => unionPayGuanFangDemo\libs\UPPayPluginExStd.jar
-* libs\x86\libentryexstd.so => unionPayGuanFangDemo\src\main\jniLibs\x86\libentryexstd.so
-* res\ => unionPayGuanFangDemo\src\main\res\
-* src\ => unionPayGuanFangDemo\src\main\java\
+* AndroidManifest.xml => chapter_15\src\main\AndroidManifest.xml
+* libs\nineoldandroids.jar => chapter_15\libs\nineoldandroids.jar
+* res\ => chapter_15\src\main\res\
+* src\ => chapter_15\src\main\java\
 
 Next Steps:
 -----------

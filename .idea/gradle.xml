@@ -11,11 +11,19 @@
             <option value="$PROJECT_DIR$/alipaydemo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/chapter_1" />
+            <option value="$PROJECT_DIR$/chapter_11" />
+            <option value="$PROJECT_DIR$/chapter_12" />
+            <option value="$PROJECT_DIR$/chapter_15" />
             <option value="$PROJECT_DIR$/chapter_2" />
             <option value="$PROJECT_DIR$/chapter_3" />
             <option value="$PROJECT_DIR$/chapter_4" />
+            <option value="$PROJECT_DIR$/chapter_5" />
+            <option value="$PROJECT_DIR$/chapter_6" />
+            <option value="$PROJECT_DIR$/chapter_7" />
+            <option value="$PROJECT_DIR$/chapter_8" />
             <option value="$PROJECT_DIR$/gsondemo" />
             <option value="$PROJECT_DIR$/keeppush" />
+            <option value="$PROJECT_DIR$/multiDexTest" />
             <option value="$PROJECT_DIR$/okhttpdemo" />
             <option value="$PROJECT_DIR$/proxytest" />
             <option value="$PROJECT_DIR$/unionPayGuanFangDemo" />
@@ -24,6 +32,7 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

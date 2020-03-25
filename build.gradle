@@ -2,6 +2,10 @@
 
 buildscript {
     repositories {
+        mavenLocal()
+        maven {
+            url "http://repo.yypm.com:8181/nexus/content/groups/public"
+        }
         jcenter()
     }
     dependencies {
@@ -14,6 +18,10 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
+        maven {
+            url "http://repo.yypm.com:8181/nexus/content/groups/public"
+        }
         jcenter()
     }
 }

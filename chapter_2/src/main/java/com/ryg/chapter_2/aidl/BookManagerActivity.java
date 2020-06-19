@@ -55,7 +55,7 @@ public class BookManagerActivity extends Activity {
     };
 
     private ServiceConnection mConnection = new ServiceConnection() {
-        //如果是跨进程绑定服务，service是class android.os.BinderProxy，BinderProxy的queryLocalInterface返回null，所以最终会实例化一个Proxy对象
+        //如果是跨进程绑定服务，service是android.os.BinderProxy，BinderProxy的queryLocalInterface返回null，所以最终会实例化一个Proxy对象
         //如果不是跨进程绑定服务，service是直接返回绑定的service返回的IBinder,一般是存根对象（如IBookManagerStubImpl），之后的调用就不会跨进程
         //	public Stub() {
         //			this.attachInterface(this, DESCRIPTOR);

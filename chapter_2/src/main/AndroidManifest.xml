@@ -5,9 +5,7 @@
     android:versionName="1.0"
           android:sharedUserId="com.keepon">
 
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="19" />
+
 
     <permission
         android:name="com.ryg.chapter_2.permission.ACCESS_BOOK_SERVICE"
@@ -74,15 +72,15 @@
         <activity
             android:name=".aidl.BookManagerActivity"
             android:label="@string/title_activity_book_manager" >
-
-        </activity>
-        <activity
-            android:name=".messenger.MessengerActivity"
-            android:label="@string/title_activity_messenger" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".messenger.MessengerActivity"
+            android:label="@string/title_activity_messenger" >
+
         </activity>
 
         <service

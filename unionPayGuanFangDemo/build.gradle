@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
     defaultConfig {
         applicationId "com.unionpay.demo"
-        minSdkVersion 18
-        targetSdkVersion 22
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
     }
     useLibrary 'org.apache.http.legacy'
     buildTypes {
@@ -20,7 +19,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile "com.android.support:appcompat-v7:${rootProject.ext.appcompatVersion}"
     compile files('libs/UPPayAssistEx.jar')
     compile files('libs/UPPayPluginExStd.jar')
 }

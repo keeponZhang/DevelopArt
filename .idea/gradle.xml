@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -26,13 +28,11 @@
             <option value="$PROJECT_DIR$/multiDexTest" />
             <option value="$PROJECT_DIR$/okhttpdemo" />
             <option value="$PROJECT_DIR$/proxytest" />
-            <option value="$PROJECT_DIR$/unionPayGuanFangDemo" />
             <option value="$PROJECT_DIR$/unionpay" />
             <option value="$PROJECT_DIR$/wechatpay" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

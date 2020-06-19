@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
     defaultConfig {
         applicationId "com.ryg.chapter_3"
-        minSdkVersion 14
-        targetSdkVersion 17
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
     }
 
     buildTypes {
@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:18.+'
+    compile "com.android.support:support-v4:${rootProject.ext.supportVersion}"
     compile    'com.android.support:appcompat-v7:25.0.0'
 
     compile files('libs/nineoldandroids.jar')

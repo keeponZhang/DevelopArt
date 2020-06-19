@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         UserManager.sUserId = 2;
-        findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.go_second).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {

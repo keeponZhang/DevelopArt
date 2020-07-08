@@ -27,7 +27,9 @@ public class BinderPoolActivity extends Activity {
         }).start();
     }
 
- 
+
+    //之所以要在线程中执行，这是因为在Binder连接池中通过CountDownLatch讲bindService这一异步操作转换成同步操作，这就
+    //意味着它可能是耗时的
     private void doWork() {
         //BinderPool的核心思想是有BinderPool去连接service，返回了一个Ibinder，里面提供了queryBinder
         BinderPool binderPool = BinderPool.getInsance(BinderPoolActivity.this);

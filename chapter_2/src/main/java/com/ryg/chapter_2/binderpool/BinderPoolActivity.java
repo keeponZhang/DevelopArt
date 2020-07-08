@@ -29,7 +29,9 @@ public class BinderPoolActivity extends Activity {
 
  
     private void doWork() {
+        //BinderPool的核心思想是有BinderPool去连接service，返回了一个Ibinder，里面提供了queryBinder
         BinderPool binderPool = BinderPool.getInsance(BinderPoolActivity.this);
+        //真正调用的是service返回的代理对象的queryBinder方法
         IBinder securityBinder = binderPool
                 .queryBinder(BinderPool.BINDER_SECURITY_CENTER);
         //adil最重要的是获取服务端的iBinder对象，之前一般做法是服务端service onBind方法中返回。

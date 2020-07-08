@@ -8,6 +8,22 @@ public class BookManager {
 
     private IBookManager mBookManager;
 
+    public void setDeathRecipient(IBinder.DeathRecipient deathRecipient) {
+        mDeathRecipient = deathRecipient;
+    }
+
+    public IBinder.DeathRecipient getDeathRecipient() {
+        return mDeathRecipient;
+    }
+
+    public IBookManager getBookManager() {
+        return mBookManager;
+    }
+
+    public void setBookManager(IBookManager bookManager) {
+        mBookManager = bookManager;
+    }
+
     private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
         @Override
         public void binderDied() {

@@ -22,10 +22,10 @@ public class MessengerService extends Service {
             switch (msg.what) {
             case MyConstants.MSG_FROM_CLIENT:
                 Log.i(TAG, "receive msg from Client:" + msg.getData().getString("msg"));
-
+                //这里收到的其实是代理对象
                 Messenger client = msg.replyTo;
                 //跨进程处理后，client Messenger对象的mTarget成员变量是客户端传过来的Prxoy
-                Log.e(TAG, "handleMessage client Messenger==: "+client+ "  "+client.getBinder());
+                Log.e(TAG, "handleMessage 服务接收到的client Messenger==: "+client+ "  "+client.getBinder());
                 Message relpyMessage = Message.obtain(null, MyConstants.MSG_FROM_SERVICE);
                 Bundle bundle = new Bundle();
                 bundle.putString("reply", "嗯，你的消息我已经收到，稍后会回复你。");

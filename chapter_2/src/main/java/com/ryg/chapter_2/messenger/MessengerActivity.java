@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -25,7 +26,9 @@ public class MessengerActivity extends Activity {
     private Messenger mGetReplyMessenger = new Messenger(new MessengerHandler());
 
     public void bindServiceWithMessenger(View view) {
-        Intent intent = new Intent("com.ryg.MessengerService.launch");
+        // Intent intent = new Intent("com.ryg.MessengerService.launch");
+        // intent.addCategory(Intent.CATEGORY_DEFAULT);
+        Intent intent = new Intent(this, MessengerService.class);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -53,7 +56,10 @@ public class MessengerActivity extends Activity {
             Bundle data = new Bundle();
             data.putString("msg", "hello, this is client.");
             msg.setData(data);
+            //这里发送的是存根
             msg.replyTo = mGetReplyMessenger;
+            Log.e("TAG", "MessengerActivity onServiceConnected:" + mGetReplyMessenger+" " +
+                    "mGetReplyMessenger="+mGetReplyMessenger.getBinder());
 	        Log.e(TAG, "onServiceConnected: mService.send");
             try {
                 //mTarget.send(message);所以客户端Messenger发送消息，实际是通过Proxy调用服务端存根MessengerImpl的send(msg)，该存根是服务端Messenger的一个成员变量

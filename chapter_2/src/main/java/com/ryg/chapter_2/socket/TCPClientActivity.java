@@ -151,6 +151,7 @@ public class TCPClientActivity extends Activity implements OnClickListener {
             // 接收服务器端的消息
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     socket.getInputStream()));
+            //不返回就一直可以发送消息
             while (!TCPClientActivity.this.isFinishing()) {
                 String msg = br.readLine();
                 System.out.println("receive :" + msg);

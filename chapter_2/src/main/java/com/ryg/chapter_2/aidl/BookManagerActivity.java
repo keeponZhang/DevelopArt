@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.ryg.chapter_2.R;
+import com.ryg.chapter_2.manager.BookManager;
 
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class BookManagerActivity extends Activity {
         public void onServiceConnected(ComponentName className, IBinder service) {
             Log.e(TAG, "onServiceConnected service: "+service );
             IBookManager bookManager = IBookManager.Stub.asInterface(service);
+            //这里是主线程
             Log.e(TAG, "onServiceConnected bookManager: "+bookManager+ "  Thread:"+Thread.currentThread().getName() );
             mRemoteBookManager = bookManager;
             try {
@@ -76,12 +78,16 @@ public class BookManagerActivity extends Activity {
                         + list.getClass().getCanonicalName());
                 Log.i(TAG, "query book list:" + list.toString());
                 Book newBook = new Book(3, "Android进阶");
-                //如果远程方法是好事的，不能在ui线程中发起此远程请求
+                //如果远程方法是耗时的，不能在ui线程中发起此远程请求
                 //其次，由于服务端的Binder方法是运行在Binder线程池中的
                 bookManager.addBook(newBook);
                 Log.e(TAG, "add book:" + newBook);
                 List<Book> newList = bookManager.getBookList();
                 Log.e(TAG, "query book list:" + newList.toString());
+                //设置死亡代理
+                BookManager bookManager1 = new BookManager();
+                bookManager1.setBookManager(bookManager);
+                service.linkToDeath(bookManager1.getDeathRecipient(),0);
             } catch (RemoteException e) {
                 e.printStackTrace();
                 Log.e(TAG, "RemoteException:" + e.getMessage());
@@ -99,7 +105,8 @@ public class BookManagerActivity extends Activity {
 
         @Override
         public void onNewBookArrived(Book newBook) throws RemoteException {
-            Log.e(TAG, "onNewBookArrived Thread: "+Thread.currentThread().getName() );
+            //这里是客户端的binder线程池
+            Log.w(TAG, "客户端收到线程onNewBookArrived Thread: "+Thread.currentThread().getName() );
             mHandler.obtainMessage(MESSAGE_NEW_BOOK_ARRIVED, newBook)
                     .sendToTarget();
         }

@@ -24,6 +24,10 @@ public class BookManagerService extends Service {
     // private CopyOnWriteArrayList<IOnNewBookArrivedListener> mListenerList =
     // new CopyOnWriteArrayList<IOnNewBookArrivedListener>();
 
+    //接收的是IInterface
+    //它的工作原理很简单，它的你内部有一个map结构专门来保存所有的aidl回调
+    //这个map的可以是Ibinder类型，value是Callback类型
+    //其中Callback中封装了真正的远程的listener
     private RemoteCallbackList<IOnNewBookArrivedListener> mListenerList = new RemoteCallbackList<IOnNewBookArrivedListener>();
 
     private Object mObject = new Object();
@@ -31,6 +35,7 @@ public class BookManagerService extends Service {
 
         @Override
         public List<Book> getBookList() throws RemoteException {
+            //这里是服务端的Binder线程池
             Log.e(TAG, " BookManagerService getBookList: "+mObject+"  Thread:"+Thread.currentThread().getName() );
 //           SystemClock.sleep(5000);
             return mBookList;
@@ -69,7 +74,7 @@ public class BookManagerService extends Service {
         public void registerListener(IOnNewBookArrivedListener listener)
                 throws RemoteException {
             mListenerList.register(listener);
-
+            //beginBroadcast和finishBroadcast必须配套使用
             final int N = mListenerList.beginBroadcast();
             mListenerList.finishBroadcast();
             Log.e(TAG, "registerListener, current size:" + N+"  listener=="+listener+"  listener.asBinder()="+listener.asBinder());
@@ -99,7 +104,9 @@ public class BookManagerService extends Service {
         super.onCreate();
         mBookList.add(new Book(1, "Android"));
         mBookList.add(new Book(2, "Ios"));
-//     new Thread(new ServiceWorker()).start();
+        Thread thread = new Thread(new ServiceWorker());
+        thread .setName("keepon");
+        thread.start();
     }
 
     @Override
@@ -129,7 +136,8 @@ public class BookManagerService extends Service {
             if (l != null) {
                 try {
                     l.onNewBookArrived(book);
-                    Log.e(TAG, "onNewBookArrived Thread: "+Thread.currentThread().getName() );
+                    Log.e(TAG,
+                            "服务端通知线程onNewBookArrived Thread: "+Thread.currentThread().getName() );
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }

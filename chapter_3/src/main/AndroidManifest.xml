@@ -26,15 +26,12 @@
             android:configChanges="screenLayout"
             android:label="@string/title_scene_1"
             android:launchMode="standard" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".DemoActivity_2"
             android:configChanges="screenLayout"
-            android:label="@string/title_scene_1"
+            android:label="@string/title_scene_2"
             android:launchMode="standard" >
 
         </activity>
@@ -42,9 +39,12 @@
             android:name=".DemoCoreActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:configChanges="screenLayout"
-            android:label="@string/title_scene_1"
+            android:label="@string/title_scene_3"
             android:launchMode="standard" >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ThirdActivity"

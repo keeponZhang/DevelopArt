@@ -7,6 +7,7 @@ buildscript {
             url "http://repo.yypm.com:8181/nexus/content/groups/public"
         }
         jcenter()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
@@ -23,6 +24,7 @@ allprojects {
             url "http://repo.yypm.com:8181/nexus/content/groups/public"
         }
         jcenter()
+        google()
     }
 }
 
@@ -37,5 +39,5 @@ ext {
     androidCompileSdkVersion = 22
 
     supportVersion ="22.0.0"
-    appcompatVersion ="22.0.0"
+    appcompatVersion ="22.1.0"
 }

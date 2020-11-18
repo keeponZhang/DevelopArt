@@ -9,6 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
+import com.ryg.chapter_3.Util;
+
+/**
+ * 外部拦截法
+ */
 public class HorizontalScrollViewEx extends ViewGroup {
     private static final String TAG = "HorizontalScrollViewEx";
 
@@ -37,7 +42,7 @@ public class HorizontalScrollViewEx extends ViewGroup {
     }
 
     public HorizontalScrollViewEx(Context context, AttributeSet attrs,
-            int defStyle) {
+                                  int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -54,34 +59,37 @@ public class HorizontalScrollViewEx extends ViewGroup {
         int y = (int) event.getY();
 
         switch (event.getAction()) {
-        case MotionEvent.ACTION_DOWN: {
-            intercepted = false;
-            if (!mScroller.isFinished()) {
-                mScroller.abortAnimation();
-                intercepted = true;
-            }
-            break;
-        }
-        case MotionEvent.ACTION_MOVE: {
-            int deltaX = x - mLastXIntercept;
-            int deltaY = y - mLastYIntercept;
-            if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                intercepted = true;
-            } else {
+            case MotionEvent.ACTION_DOWN: {
                 intercepted = false;
+                //考虑一种情况，如果此时用户正在水平滑动，但是在水平滑动停止之前用户在迅速进行竖直滑动，就会导致界面在水平方向滑动到终点从而处于一种中间状态，为了避免何种不好的体验
+                //当水平方向正在滑动时，下一个序列的点击事件仍然交给父容器处理
+                if (!mScroller.isFinished()) {
+
+                    mScroller.abortAnimation();
+                    intercepted = true;
+                }
+                break;
             }
-            break;
-        }
-        case MotionEvent.ACTION_UP: {
-            //这里一定要返回false，因为如果touch事件要给子控件处理，即action_move返回false，如果这事aciton_up返回true，就会把up事件拦截下来，会给子控件发送一个cancel事件
-            intercepted = false;
-            break;
-        }
-        default:
-            break;
+            case MotionEvent.ACTION_MOVE: {
+                int deltaX = x - mLastXIntercept;
+                int deltaY = y - mLastYIntercept;
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    intercepted = true;
+                } else {
+                    intercepted = false;
+                }
+                break;
+            }
+            case MotionEvent.ACTION_UP: {
+                //这里一定要返回false，因为如果touch事件要给子控件处理，即action_move返回false，如果这事aciton_up返回true，就会把up事件拦截下来，会给子控件发送一个cancel事件
+                intercepted = false;
+                break;
+            }
+            default:
+                break;
         }
 
-        Log.e(TAG, "intercepted=" + intercepted+ " event:"+event.getAction());
+        Log.e(TAG, "intercepted=" + intercepted + " event:" + Util.getActioString(event));
         mLastX = x;
         mLastY = y;
         mLastXIntercept = x;
@@ -92,7 +100,7 @@ public class HorizontalScrollViewEx extends ViewGroup {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.e(TAG, "dispatchTouchEvent=" +ev.getAction());
+        Log.e(TAG, "dispatchTouchEvent=" + ev.getAction());
         return super.dispatchTouchEvent(ev);
     }
 
@@ -102,39 +110,39 @@ public class HorizontalScrollViewEx extends ViewGroup {
         int x = (int) event.getX();
         int y = (int) event.getY();
         switch (event.getAction()) {
-        case MotionEvent.ACTION_DOWN: {
-            if (!mScroller.isFinished()) {
-                mScroller.abortAnimation();
+            case MotionEvent.ACTION_DOWN: {
+                if (!mScroller.isFinished()) {
+                    mScroller.abortAnimation();
+                }
+                break;
             }
-            break;
-        }
-        case MotionEvent.ACTION_MOVE: {
-            int deltaX = x - mLastX;
-            int deltaY = y - mLastY;
-            scrollBy(-deltaX, 0);
-            break;
-        }
-        case MotionEvent.ACTION_UP: {
-            int scrollX = getScrollX();
-            int scrollToChildIndex = scrollX / mChildWidth;
-            mVelocityTracker.computeCurrentVelocity(1000);
-            float xVelocity = mVelocityTracker.getXVelocity();
-            if (Math.abs(xVelocity) >= 50) {
-                mChildIndex = xVelocity > 0 ? mChildIndex - 1 : mChildIndex + 1;
-            } else {
-                mChildIndex = (scrollX + mChildWidth / 2) / mChildWidth;
+            case MotionEvent.ACTION_MOVE: {
+                int deltaX = x - mLastX;
+                int deltaY = y - mLastY;
+                scrollBy(-deltaX, 0);
+                break;
             }
-            mChildIndex = Math.max(0, Math.min(mChildIndex, mChildrenSize - 1));
-            int dx = mChildIndex * mChildWidth - scrollX;
-            smoothScrollBy(dx, 0);
-            mVelocityTracker.clear();
-            break;
-        }
-        default:
-            break;
+            case MotionEvent.ACTION_UP: {
+                int scrollX = getScrollX();
+                int scrollToChildIndex = scrollX / mChildWidth;
+                mVelocityTracker.computeCurrentVelocity(1000);
+                float xVelocity = mVelocityTracker.getXVelocity();
+                if (Math.abs(xVelocity) >= 50) {
+                    mChildIndex = xVelocity > 0 ? mChildIndex - 1 : mChildIndex + 1;
+                } else {
+                    mChildIndex = (scrollX + mChildWidth / 2) / mChildWidth;
+                }
+                mChildIndex = Math.max(0, Math.min(mChildIndex, mChildrenSize - 1));
+                int dx = mChildIndex * mChildWidth - scrollX;
+                smoothScrollBy(dx, 0);
+                mVelocityTracker.clear();
+                break;
+            }
+            default:
+                break;
         }
 
-        Log.e(TAG, "onTouchEvent=" +event.getAction());
+        Log.e(TAG, "onTouchEvent=" + event.getAction());
         mLastX = x;
         mLastY = y;
         return true;
@@ -152,7 +160,8 @@ public class HorizontalScrollViewEx extends ViewGroup {
         int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightSpaceSize = MeasureSpec.getSize(heightMeasureSpec);
         int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
-        Log.e(TAG, "onMeasure: widthSpaceSize=="+widthSpaceSize+"  heightSpaceSize="+heightSpaceSize );
+        Log.e(TAG, "onMeasure: widthSpaceSize==" + widthSpaceSize + "  heightSpaceSize=" +
+                heightSpaceSize);
         if (childCount == 0) {
             setMeasuredDimension(0, 0);
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {

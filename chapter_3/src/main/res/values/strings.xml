@@ -3,7 +3,9 @@
 
     <string name="app_name">Chapter_3</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_scene_1">Chapter_3:滑动冲突场景1</string>
+    <string name="title_scene_1">Chapter_3:滑动冲突场景1,外部拦截</string>
+    <string name="title_scene_2">Chapter_3:滑动冲突场景1,内部部拦截</string>
+    <string name="title_scene_3">Chapter_3:滑动冲突场景2,同方向滑动</string>
     <string name="title_activity_main">MainActivity</string>
 
 </resources>

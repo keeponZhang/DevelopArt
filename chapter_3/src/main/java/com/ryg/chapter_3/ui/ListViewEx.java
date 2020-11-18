@@ -6,6 +6,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ListView;
 
+import com.ryg.chapter_3.Util;
+
+/**
+ * 内部拦截费
+ */
 public class ListViewEx extends ListView {
     private static final String TAG = "ListViewEx";
 
@@ -60,7 +65,9 @@ public class ListViewEx extends ListView {
 
         mLastX = x;
         mLastY = y;
-        return super.dispatchTouchEvent(event);
+        boolean b = super.dispatchTouchEvent(event);
+        Log.e("TAG", "ListViewEx dispatchTouchEvent:" + b + "  " + Util.getActioString(event));
+        return b;
     }
 
 }

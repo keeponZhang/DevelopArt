@@ -1,5 +1,6 @@
 package com.ryg.chapter_3;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -15,19 +16,20 @@ import java.util.ArrayList;
 public class DemoCoreActivity extends AppCompatActivity implements StickyLayout.OnGiveUpTouchEventListener {
     private StickyLayout stickyLayout;
     ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo_core);
         initView();
-        LinearLayout ll= (LinearLayout) findViewById(R.id.sticky_header);
-        stickyLayout= (StickyLayout) findViewById(R.id.sticky_layout);
+        LinearLayout ll = (LinearLayout) findViewById(R.id.sticky_header);
+        stickyLayout = (StickyLayout) findViewById(R.id.sticky_layout);
         stickyLayout.setOnGiveUpTouchEventListener(this);
 
     }
 
     private void initView() {
-        listView = (ListView)findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.list);
         ArrayList<String> datas = new ArrayList<String>();
         for (int i = 0; i < 50; i++) {
             datas.add("name " + i);
